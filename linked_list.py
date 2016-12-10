@@ -28,7 +28,8 @@ class LinkedList(object):
     self.head = new_node
     #return 
 
-#  def head
+  def get_head_value(self):
+    return self.head.get_data()
 
   def size(self):
     current = self.head
