@@ -173,6 +173,7 @@ def textToGraph():
   readData = nodeDict(fname)
   for i in readData:
     origin = G.insert_vertex(i)
+  for i in readData:
     for j in readData[i]:
       dest = G.insert_vertex(j)
       G.insert_edge(origin, dest)
