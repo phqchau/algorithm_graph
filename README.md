@@ -12,9 +12,9 @@ For edges, you will likely only need:
 
 • two selector functions
 
-o one returns the index of the node at the other end of the edge
+  one returns the index of the node at the other end of the edge
 
-o another returns a pointer to the next edge in the list
+  another returns a pointer to the next edge in the list
 
 For the nodes in the graph, provide the following:
 
