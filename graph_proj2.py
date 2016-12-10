@@ -173,3 +173,7 @@ def textToGraph():
     for j in readData[i]:
       dest = G.insert_vertex(j)
       G.insert_edge(origin, dest)
+  return G
+
+if __name__ == '__main__':
+  textToGraph()
