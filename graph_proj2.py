@@ -23,8 +23,12 @@ class Graph:
       """Return the vertex that is opposite v on this edge."""
       if not isinstance(v, Graph.Vertex):
         raise TypeError('v must be a Vertex')
-      return self._destination if v is self._origin else self._origin
-      raise ValueError('v not incident to edge')
+      if v is self._origin:
+        return self._destination
+      elif v is self._destination:
+        return self._origin
+      else:
+        raise ValueError('v not incident to edge')
 
     def next_edge(self, theGraph):
       """Return element associated with this edge."""
@@ -125,8 +129,13 @@ class Graph:
     found = False
     lnk_list = self._outgoing[u]
     while not found:
-
-    return self._outgoing[u].get(v)
+      current = lnk_list.get_head_value()
+      if current.opposite(u) == v:
+        return current
+      try:
+        current = current.next_edge()
+      except:
+        return None
 
   def insert_vertex(self, x=None):
     """Insert and return a new Vertex with element x."""
@@ -142,16 +151,19 @@ class Graph:
     Raise a ValueError if u and v are not vertices of the graph.
     Raise a ValueError if u and v are already adjacent.
     """
-    if self.get_edge(u, v) is not None:      # includes error checking
-      raise ValueError('u and v are already adjacent')
-    lnk_list = self._outgoing[u]
-    if lnk_list.size() > 0:
-      x = lnk_list.head()
-    e = self.Edge(u, v, x)
-    self._outgoing[u].insert(e)
-    self._incoming[v].insert(e)
-    #self._outgoing[u][v] = e
-    #self._incoming[v][u] = e
-    return e
+    if self.get_edge(u, v) is None:      # includes error checking
+      #raise ValueError('u and v are already adjacent')
+      lnk_list = self._outgoing[u]
+      if lnk_list.size() > 0:
+        x = lnk_list.head()
+      e = self.Edge(u, v, x)
+      u.addEdge(e)
+      v.addEdge(e)
+
+      #self._outgoing[u].insert(e)
+      #self._incoming[v].insert(e)
+      #self._outgoing[u][v] = e
+      #self._incoming[v][u] = e
+      return e
 
   def searchCity(cityName):
