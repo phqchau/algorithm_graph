@@ -1,5 +1,6 @@
 from linked_list import LinkedList
 import collections
+from nodeDict import nodeDict
 
 class Graph:
   """Representation of a simple Graph ADT using adjacency-list"""
@@ -162,3 +163,13 @@ class Graph:
       p += 1
     self.insert_vertex(cityName)
     return p
+
+def textToGraph():
+  G = Graph()
+  fname = input("What file do you want to use?")
+  readData = nodeDict(fname)
+  for i in readData:
+    origin = G.insert_vertex(i)
+    for j in readData[i]:
+      dest = G.insert_vertex(j)
+      G.insert_edge(origin, dest)
