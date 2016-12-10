@@ -1,4 +1,5 @@
 from linked_list import LinkedList
+import collections
 
 class Graph:
   """Representation of a simple Graph ADT using adjacency-list"""
@@ -99,21 +100,12 @@ class Graph:
     # there is no such node , and (in any case) returns the index of the node
 
   #------------------------- Graph functions -------------------------
-  def __init__(self, directed=False):
+  def __init__(self):
     """Create an empty graph (undirected, by default).
 
-    Graph is directed if optional paramter is set to True.
+    Graph is undirected.
     """
-    self._outgoing = {}
-    # only create second map for directed graph; use alias for undirected
-    self._incoming = {} if directed else self._outgoing
-
-  def is_directed(self):
-    """Return True if this is a directed graph; False if undirected.
-
-    Property is based on the original declaration of the graph, not its contents.
-    """
-    return self._incoming is not self._outgoing # directed if maps are distinct
+    self._outgoing = collections.OrderedDict()
 
   def _validate_vertex(self, v):
     """Verify that v is a Vertex of this graph."""
@@ -144,8 +136,6 @@ class Graph:
     """Insert and return a new Vertex with element x."""
     v = self.Vertex(x)
     self._outgoing[v] = LinkedList()
-    if self.is_directed():
-      self._incoming[v] = {}        # need distinct map for incoming edges
     return v
 
   def insert_edge(self, u, v, x=None):
@@ -162,13 +152,9 @@ class Graph:
       u.addEdge(self._outgoing, e)
       v.addEdge(self._outgoing, e)
 
-      #self._outgoing[u].insert(e)
-      #self._incoming[v].insert(e)
-      #self._outgoing[u][v] = e
-      #self._incoming[v][u] = e
       return e
 
-  def searchCity(cityName):
+  def searchCity(self, cityName):
     p = 0
     for i in self._outgoing:
       if str(i) == cityName:
