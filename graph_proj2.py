@@ -7,13 +7,13 @@ class Graph:
   class Edge:
     """Lightweight edge structure for a graph."""
 
-    __slots__ = '_origin', '_destination', '_element'
+    __slots__ = '_origin', '_destination'#, '_element'
 
-    def __init__(self, u, v, x=None):
+    def __init__(self, u, v):#, x=None):
       """Do not call constructor directly. x represents the next edge"""
       self._origin = u
       self._destination = v
-      self._next = x
+      #self._next = x
 
     def endpoints(self):
       """Return (u,v) tuple for vertices u and v."""
@@ -98,7 +98,7 @@ class Graph:
     # node with that name , adds a new node to the graph with that name if
     # there is no such node , and (in any case) returns the index of the node
 
-#------------------------- Graph functions -------------------------
+  #------------------------- Graph functions -------------------------
   def __init__(self, directed=False):
     """Create an empty graph (undirected, by default).
 
@@ -121,7 +121,7 @@ class Graph:
       raise TypeError('Vertex expected')
     if v not in self._outgoing:
       raise ValueError('Vertex does not belong to this graph.')
-# Edit this function --- get_edge
+
   def get_edge(self, u, v):
     """Return the edge from u to v, or None if not adjacent."""
     self._validate_vertex(u)
@@ -156,7 +156,7 @@ class Graph:
       lnk_list = self._outgoing[u]
       if lnk_list.size() > 0:
         x = lnk_list.head()
-      e = self.Edge(u, v, x)
+      e = self.Edge(u, v)#, x)
       u.addEdge(e)
       v.addEdge(e)
 
@@ -167,3 +167,4 @@ class Graph:
       return e
 
   def searchCity(cityName):
+    pass
