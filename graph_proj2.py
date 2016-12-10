@@ -130,11 +130,14 @@ class Graph:
     lnk_list = self._outgoing[u]
     while not found:
       current = lnk_list.get_head_value()
-      if current.opposite(u) == v:
-        return current
-      try:
-        current = current.next_edge()
-      except:
+      if current:
+        if current.opposite(u) == v:
+          return current
+        try:
+          current = current.next_edge()
+        except:
+          return None
+      else:
         return None
 
   def insert_vertex(self, x=None):

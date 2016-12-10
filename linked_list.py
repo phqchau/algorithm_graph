@@ -29,7 +29,7 @@ class LinkedList(object):
     #return 
 
   def get_head_value(self):
-    return self.head.get_data()
+    return self.head.get_data() if self.head else None
 
   def size(self):
     current = self.head
