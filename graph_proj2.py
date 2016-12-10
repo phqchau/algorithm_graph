@@ -156,12 +156,9 @@ class Graph:
     """
     if self.get_edge(u, v) is None:      # includes error checking
       #raise ValueError('u and v are already adjacent')
-<<<<<<< HEAD
       e = self.Edge(u, v)#, x)
-=======
       lnk_list = self._outgoing[u]
       e = self.Edge(u, v)
->>>>>>> b8f2e293b770357bea161a0e19a63022f7b34b31
       u.addEdge(self._outgoing, e)
       v.addEdge(self._outgoing, e)
 
