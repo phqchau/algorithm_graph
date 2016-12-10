@@ -1,6 +1,8 @@
+import collections
+
 def nodeDict(filename):
     nodes=open(filename, "r")
-    d = {}
+    d = collections.OrderedDict()
     for line in nodes.readlines():
         lineList = line.replace("-", " ").strip().split(" ")
 
@@ -9,5 +11,8 @@ def nodeDict(filename):
                 d[lineList[0]].append(lineList[i])
             except KeyError:
                 d[lineList[0]] = [lineList[i]]
+#    print(d)
     return d
-    print(d)
+
+
+#nodeDict("graphOne.in")

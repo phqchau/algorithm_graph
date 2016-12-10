@@ -180,4 +180,4 @@ def textToGraph():
   return G
 
 if __name__ == '__main__':
-  G = textToGraph()
+ G = textToGraph()
