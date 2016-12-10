@@ -9,11 +9,11 @@ class Graph:
 
     __slots__ = '_origin', '_destination', '_element'
 
-    def __init__(self, u, v, x):
-      """Do not call constructor directly. Use Graph's insert_edge(u,v,x)."""
+    def __init__(self, u, v, x=None):
+      """Do not call constructor directly. x represents the next edge"""
       self._origin = u
       self._destination = v
-      self._element = x
+      self._next = x
 
     def endpoints(self):
       """Return (u,v) tuple for vertices u and v."""
@@ -26,15 +26,19 @@ class Graph:
       return self._destination if v is self._origin else self._origin
       raise ValueError('v not incident to edge')
 
-    def element(self):
+    def next_edge(self, theGraph):
       """Return element associated with this edge."""
-      return self._element
+      lnk_list = theGraph[self._origin]
+      current = lnk_list.search(self) # returns a node in linked list
+      next_loc =  current.get_next() # returns the next node
+      required_edge = next_loc.get_data() # returns the next edge
+      return required_edge
 
     def __hash__(self):         # will allow edge to be a map/set key
       return hash( (self._origin, self._destination) )
 
     def __str__(self):
-      return '({0},{1},{2})'.format(self._origin,self._destination,self._element)
+      return '({0},{1})'.format(self._origin,self._destination)
 
         # two selector functions
         #    one returns the index of the node at the other end of the edge
@@ -99,6 +103,10 @@ class Graph:
     """Return the edge from u to v, or None if not adjacent."""
     self._validate_vertex(u)
     self._validate_vertex(v)
+    found = False
+    lnk_list = self._outgoing[u]
+    while not found:
+
     return self._outgoing[u].get(v)
 
   def insert_vertex(self, x=None):
@@ -110,13 +118,16 @@ class Graph:
     return v
 
   def insert_edge(self, u, v, x=None):
-    """Insert and return a new Edge from u to v with auxiliary element x.
+    """Insert and return a new Edge from u to v with integer x as pointer to next edge in linked list.
 
     Raise a ValueError if u and v are not vertices of the graph.
     Raise a ValueError if u and v are already adjacent.
     """
     if self.get_edge(u, v) is not None:      # includes error checking
       raise ValueError('u and v are already adjacent')
+    lnk_list = self._outgoing[u]
+    if lnk_list.size() > 0:
+      x = lnk_list.head()
     e = self.Edge(u, v, x)
     self._outgoing[u].insert(e)
     self._incoming[v].insert(e)
