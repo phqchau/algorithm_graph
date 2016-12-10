@@ -4,7 +4,7 @@ class Graph:
   """Representation of a simple Graph ADT using adjacency-list"""
 
   #------------------------- nested Edge class -------------------------
-  class edge:
+  class Edge:
     """Lightweight edge structure for a graph."""
 
     __slots__ = '_origin', '_destination', '_element'
@@ -41,7 +41,7 @@ class Graph:
         #    another returns a pointer to the next edge in the list
 
   #------------------------- nested Vertex class -------------------------
-  class vertex:
+  class Vertex:
     """Lightweight vertex structure for a graph."""
     __slots__ = '_element'
 
@@ -71,4 +71,57 @@ class Graph:
     # node with that name , adds a new node to the graph with that name if
     # there is no such node , and (in any case) returns the index of the node
 
-    def searchCity(cityName):
+#------------------------- Graph functions -------------------------
+  def __init__(self, directed=False):
+    """Create an empty graph (undirected, by default).
+
+    Graph is directed if optional paramter is set to True.
+    """
+    self._outgoing = {}
+    # only create second map for directed graph; use alias for undirected
+    self._incoming = {} if directed else self._outgoing
+
+  def is_directed(self):
+    """Return True if this is a directed graph; False if undirected.
+
+    Property is based on the original declaration of the graph, not its contents.
+    """
+    return self._incoming is not self._outgoing # directed if maps are distinct
+
+  def _validate_vertex(self, v):
+    """Verify that v is a Vertex of this graph."""
+    if not isinstance(v, self.Vertex):
+      raise TypeError('Vertex expected')
+    if v not in self._outgoing:
+      raise ValueError('Vertex does not belong to this graph.')
+# Edit this function --- get_edge
+  def get_edge(self, u, v):
+    """Return the edge from u to v, or None if not adjacent."""
+    self._validate_vertex(u)
+    self._validate_vertex(v)
+    return self._outgoing[u].get(v)
+
+  def insert_vertex(self, x=None):
+    """Insert and return a new Vertex with element x."""
+    v = self.Vertex(x)
+    self._outgoing[v] = LinkedList()
+    if self.is_directed():
+      self._incoming[v] = {}        # need distinct map for incoming edges
+    return v
+
+  def insert_edge(self, u, v, x=None):
+    """Insert and return a new Edge from u to v with auxiliary element x.
+
+    Raise a ValueError if u and v are not vertices of the graph.
+    Raise a ValueError if u and v are already adjacent.
+    """
+    if self.get_edge(u, v) is not None:      # includes error checking
+      raise ValueError('u and v are already adjacent')
+    e = self.Edge(u, v, x)
+    self._outgoing[u].insert(e)
+    self._incoming[v].insert(e)
+    #self._outgoing[u][v] = e
+    #self._incoming[v][u] = e
+    return e
+
+  def searchCity(cityName):
