@@ -135,6 +135,9 @@ class Graph:
 
   def insert_vertex(self, x=None):
     """Insert and return a new Vertex with element x."""
+    for i in self._outgoing:
+      if i.cityName() == x:
+        return i
     v = self.Vertex(x)
     self._outgoing[v] = LinkedList()
     return v
@@ -176,4 +179,4 @@ def textToGraph():
   return G
 
 if __name__ == '__main__':
-  textToGraph()
+  G = textToGraph()
