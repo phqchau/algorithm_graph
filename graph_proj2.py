@@ -47,21 +47,40 @@ class Graph:
   #------------------------- nested Vertex class -------------------------
   class Vertex:
     """Lightweight vertex structure for a graph."""
-    __slots__ = '_element'
+    __slots__ = '_cityName'
 
     def __init__(self, x):
       """Do not call constructor directly. Use Graph's insert_vertex(x)."""
-      self._element = x
+      self._cityName = x
 
-    def element(self):
+    def cityName(self):
       """Return element associated with this vertex."""
-      return self._element
+      return self._cityName
+
+    def changeName(self, newName):
+      self._cityName = newName
+
+    def firstEdge(self, theGraph):
+    """ returns the first edge from the adjacency-list of the vertex
+
+    theGraph            the graph the node is in"""
+      edges = theGraph[self]
+      first = edges.get_head_value()
+      return first
+
+    def addEdge(self, theGraph, newEdge):
+    """ adds an edge to the adjacent list of the node
+
+    theGraph            the graph the node is in
+    newEdge             the edge to be added"""
+      edges = theGraph[self]
+      edges.insert(newEdge)
 
     def __hash__(self):         # will allow vertex to be a map/set key
       return hash(id(self))
 
     def __str__(self):
-      return str(self._element)
+      return str(self._cityName)
 
 
         # data field for names
