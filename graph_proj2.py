@@ -31,7 +31,7 @@ class Graph:
         raise ValueError('v not incident to edge')
 
     def next_edge(self, theGraph):
-      """Return element associated with this edge."""
+      """Return the subsequent edge in the graph."""
       lnk_list = theGraph[self._origin]
       current = lnk_list.search(self) # returns a node in linked list
       next_loc =  current.get_next() # returns the next node
@@ -65,18 +65,18 @@ class Graph:
       self._cityName = newName
 
     def firstEdge(self, theGraph):
-    """ returns the first edge from the adjacency-list of the vertex
+      """ returns the first edge from the adjacency-list of the vertex
 
-    theGraph            the graph the node is in"""
+      theGraph            the graph the node is in"""
       edges = theGraph[self]
       first = edges.get_head_value()
       return first
 
     def addEdge(self, theGraph, newEdge):
-    """ adds an edge to the adjacent list of the node
+      """ adds an edge to the adjacent list of the node
 
-    theGraph            the graph the node is in
-    newEdge             the edge to be added"""
+      theGraph            the graph the node is in
+      newEdge             the edge to be added"""
       edges = theGraph[self]
       edges.insert(newEdge)
 
@@ -167,4 +167,8 @@ class Graph:
       return e
 
   def searchCity(cityName):
+<<<<<<< Updated upstream
     pass
+=======
+    return None
+>>>>>>> Stashed changes
