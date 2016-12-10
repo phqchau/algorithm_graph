@@ -42,7 +42,7 @@ class Graph:
       return hash( (self._origin, self._destination) )
 
     def __str__(self):
-      return '({0},{1})'.format(self._origin,self._destination)
+      return '({0}<->{1})'.format(self._origin,self._destination)
 
         # two selector functions
         #    one returns the index of the node at the other end of the edge
@@ -160,8 +160,8 @@ class Graph:
       if lnk_list.size() > 0:
         x = lnk_list.head()
       e = self.Edge(u, v)#, x)
-      u.addEdge(e)
-      v.addEdge(e)
+      u.addEdge(self._outgoing, e)
+      v.addEdge(self._outgoing, e)
 
       #self._outgoing[u].insert(e)
       #self._incoming[v].insert(e)

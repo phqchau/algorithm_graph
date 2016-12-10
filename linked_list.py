@@ -22,11 +22,11 @@ class LinkedList(object):
   def __init__(self, head=None):
     self.head = head
 
-  def insert(self, data):    #Inserts the new node as the head 
-    new_node = Node(data)
+  def insert(self, data):    #Inserts the new node as the head
+    new_node = self.Node(data)
     new_node.set_next(self.head)
     self.head = new_node
-    #return 
+    #return
 
   def get_head_value(self):
     return self.head.get_data() if self.head else None
@@ -49,7 +49,7 @@ class LinkedList(object):
         current = current.get_next()
     if current is None:
       raise ValueError("Data not in list")
-    return current    
+    return current
 
   def delete(self, data):
     current = self.head
@@ -73,4 +73,3 @@ class LinkedList(object):
       current.data = None
       current.set_next(None)
       current = None
-
