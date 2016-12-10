@@ -156,9 +156,6 @@ class Graph:
     """
     if self.get_edge(u, v) is None:      # includes error checking
       #raise ValueError('u and v are already adjacent')
-      lnk_list = self._outgoing[u]
-      if lnk_list.size() > 0:
-        x = lnk_list.head()
       e = self.Edge(u, v)#, x)
       u.addEdge(self._outgoing, e)
       v.addEdge(self._outgoing, e)
@@ -170,4 +167,10 @@ class Graph:
       return e
 
   def searchCity(cityName):
-    return None
+    p = 0
+    for i in self._outgoing:
+      if str(i) == cityName:
+        return p
+      p += 1
+    self.insert_vertex(cityName)
+    return p
