@@ -167,8 +167,3 @@ class Graph:
       return e
 
   def searchCity(cityName):
-<<<<<<< Updated upstream
-    pass
-=======
-    return None
->>>>>>> Stashed changes
