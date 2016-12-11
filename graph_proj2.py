@@ -32,13 +32,13 @@ class Graph:
       else:
         raise ValueError('v not incident to edge')
 
-    def next_edge(self, theGraph):
+    def next_edge(self, lnk_list):
       """Return the subsequent edge in the graph."""
-      lnk_list = theGraph#[self._origin]
+      #lnk_list = theGraph#[self._origin]
       current = lnk_list.search(self) # returns a node in linked list
       next_loc =  current.get_next() # returns the next node
-      required_edge = next_loc.get_data() # returns the next edge
-      return required_edge
+      #required_edge = next_loc.get_data() # returns the next edge
+      return next_loc.get_data() if next_loc != None else None
 
     def __hash__(self):         # will allow edge to be a map/set key
       return hash( (self._origin, self._destination) )
@@ -162,7 +162,7 @@ class Graph:
       #lnk_list = self._cities[u]
       e = self.Edge(u, v)
       u.addEdge(self._cities, e)
-      v.addEdge(self._cities, e)
+      #v.addEdge(self._cities, e)
 
       return e
     else:
@@ -189,25 +189,25 @@ def textToGraph():
       origin = G.insert_vertex(i)
       dest = G.insert_vertex(j)
       e = G.insert_edge(origin, dest)
-      if e == None:
-        e = G.insert_edge(dest, origin)
+      #if e == None:
+      #  e = G.insert_edge(dest, origin)
       #print(origin.cityName(),e.opposite(origin).cityName())
   return G
 
 def printGraph(a_Graph):
   for vertices in a_Graph._cities:
-    name,val = str(vertices).split(',')
+    name,val = vertices.cityName(), vertices.get_val()
     print("Node: {0}, Name: {1}".format(val,name))
     currentCityLinkedList = a_Graph._cities[vertices]
     currentEdge = currentCityLinkedList.get_head_value()
-    for i in range(1):
-      edge_val,edge_name = currentEdge.opposite(vertices).get_val(),currentEdge.opposite(vertices).cityName()
-      print("\tEdge: {0},{1}".format(edge_val,edge_name))
-      #currentEdge = currentEdge.next_edge(a_Graph._cities)
+    #for i in range(1):
+    while currentEdge:
+      edge_val = currentEdge.opposite(vertices).get_val()
+      print("\tEdge: {0}".format(edge_val))
+      #print(a_Graph._cities[vertices].size())
+      currentEdge = currentEdge.next_edge(a_Graph._cities[vertices])
 
 if __name__ == '__main__':
  G = textToGraph()
- #print(G.searchCity("one"))
- #print(G.searchCity("ten"))
  printGraph(G)
 
