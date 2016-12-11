@@ -34,7 +34,7 @@ class Graph:
 
     def next_edge(self, theGraph):
       """Return the subsequent edge in the graph."""
-      lnk_list = theGraph[self._origin]
+      lnk_list = theGraph._cities[self._origin]
       current = lnk_list.search(self) # returns a node in linked list
       next_loc =  current.get_next() # returns the next node
       required_edge = next_loc.get_data() # returns the next edge
@@ -77,7 +77,7 @@ class Graph:
       """ returns the first edge from the adjacency-list of the vertex
 
       theGraph            the graph the node is in"""
-      edges = theGraph[self]
+      edges = theGraph._cities[self]
       first = edges.get_head_value()
       return first
 
@@ -191,7 +191,7 @@ def printGraph(a_Graph):
     print("Node: {0}, Name: {1}".format(val,name))
     #currentCityLinkedList = a_Graph._cities[vertices]
     #currentCityLinkedListHead = currentCityLinkedList.get_head()
-    currentEdge = vertices.first(a_Graph) #currentCityLinkedListHead
+    currentEdge = vertices.firstEdge(a_Graph) #currentCityLinkedListHead
     while currentEdge:
       edge_val = currentEdge.opposite(vertices).get_val()
       print("\tEdge: {0}".format(edge_val))
