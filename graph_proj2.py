@@ -166,7 +166,7 @@ class Graph:
 
   def searchCity(self, cityName):
     for i in self._cities:
-      if str(i) == cityName:
+      if str(i).split(',')[0] == cityName:
         return i._cityValue
     self.insert_vertex(cityName)
     return self._count
@@ -199,4 +199,4 @@ def printGraph(a_Graph):
 
 if __name__ == '__main__':
  G = textToGraph()
- printGraph(G)
+ #printGraph(G)
