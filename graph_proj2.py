@@ -106,13 +106,13 @@ class Graph:
 
     Graph is undirected.
     """
-    self._outgoing = collections.OrderedDict()
+    self._cities = collections.OrderedDict()
 
   def _validate_vertex(self, v):
     """Verify that v is a Vertex of this graph."""
     if not isinstance(v, self.Vertex):
       raise TypeError('Vertex expected')
-    if v not in self._outgoing:
+    if v not in self._cities:
       raise ValueError('Vertex does not belong to this graph.')
 
   def get_edge(self, u, v):
@@ -120,7 +120,7 @@ class Graph:
     self._validate_vertex(u)
     self._validate_vertex(v)
     found = False
-    lnk_list = self._outgoing[u]
+    lnk_list = self._cities[u]
     while not found:
       current = lnk_list.get_head_value()
       if current:
@@ -135,11 +135,11 @@ class Graph:
 
   def insert_vertex(self, x=None):
     """Insert and return a new Vertex with element x."""
-    for i in self._outgoing:
+    for i in self._cities:
       if i.cityName() == x:
         return i
     v = self.Vertex(x)
-    self._outgoing[v] = LinkedList()
+    self._cities[v] = LinkedList()
     return v
 
   def insert_edge(self, u, v, x=None):
@@ -151,16 +151,16 @@ class Graph:
     if self.get_edge(u, v) is None:      # includes error checking
       #raise ValueError('u and v are already adjacent')
       e = self.Edge(u, v)#, x)
-      lnk_list = self._outgoing[u]
+      lnk_list = self._cities[u]
       e = self.Edge(u, v)
-      u.addEdge(self._outgoing, e)
-      v.addEdge(self._outgoing, e)
+      u.addEdge(self._cities, e)
+      v.addEdge(self._cities, e)
 
       return e
 
   def searchCity(self, cityName):
     p = 0
-    for i in self._outgoing:
+    for i in self._cities:
       if str(i) == cityName:
         return p
       p += 1
