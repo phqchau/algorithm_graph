@@ -38,7 +38,10 @@ class Graph:
       current = lnk_list.search(self) # returns a node in linked list
       next_loc =  current.get_next() # returns the next node
       #required_edge = next_loc.get_data() # returns the next edge
-      return next_loc.get_data() if next_loc != None else None
+      if next_loc != None:
+        return next_loc.get_data()
+      else:
+        return None
 
     def __hash__(self):         # will allow edge to be a map/set key
       return hash( (self._origin, self._destination) )
@@ -162,7 +165,7 @@ class Graph:
       #lnk_list = self._cities[u]
       e = self.Edge(u, v)
       u.addEdge(self._cities, e)
-      #v.addEdge(self._cities, e)
+      v.addEdge(self._cities, e)
 
       return e
     else:
@@ -180,8 +183,8 @@ G = Graph()
 
 def textToGraph():
   fname = input("What file do you want to use?")
-  readData = nodeDict(fname)
-  print(readData)
+  readData, num_lines = nodeDict(fname)
+  #print(readData)
   for i in readData.keys():
     origin = G.insert_vertex(i)
   for i in readData.keys():
@@ -192,7 +195,7 @@ def textToGraph():
       #if e == None:
       #  e = G.insert_edge(dest, origin)
       #print(origin.cityName(),e.opposite(origin).cityName())
-  return G
+  return G, num_lines
 
 def printGraph(a_Graph):
   for vertices in a_Graph._cities:
@@ -213,22 +216,22 @@ def DFS_visit(a_Graph, start_v):
   stack = [start_v]
   cycle = False
   pre,vertex = None,None
+  #vertex = stack.pop()
   while stack:
     pre = vertex
     vertex = stack.pop()
 
-    if pre:
+    if pre and vertex:
       v_edge = a_Graph.get_edge(pre, vertex)
-      u_edge = a_Graph.get_edge(vertex, pre)
-
-      print(v_edge is u_edge)
     
-      if v_edge or u_edge:
-        if v_edge not in visited_edge or u_edge not in visited_edge:
+      if v_edge:
+        if v_edge not in visited_edge:
           visited_edge.append(v_edge)
-          print(v_edge)
+          #print(v_edge)
+          if vertex in visited_ver:
+            cycle = True
         else:
-          cycle = True
+          continue
 
     if vertex not in visited_ver:
       #print(vertex.cityName())
@@ -240,7 +243,13 @@ def DFS_visit(a_Graph, start_v):
         edge_name = currentEdge.opposite(vertex)
         stack.append(edge_name)
         #print(edge_name)
+        oldEdge = currentEdge
         currentEdge = currentEdge.next_edge(a_Graph._cities[vertex])
+        if oldEdge == currentEdge:
+          break
+    else:
+      vertex = pre
+
   return visited_ver, visited_edge, cycle
 
 def DFS(a_Graph):
@@ -257,7 +266,7 @@ def DFS(a_Graph):
         cycle = new_cycle
       num_visited_ver += len(new_ver)
       num_visited_edge += len(new_edges)
-      print(len(new_edges))
+      #print(len(new_edges))
       named_ver = [i.cityName() for i in new_ver]
       #print(named_ver)
       components.append(named_ver)
@@ -267,9 +276,9 @@ def DFS(a_Graph):
     #run_n+=1
   return components, num_visited_ver, num_visited_edge, cycle
 
-def printComponents(a_Graph):
+def printComponents(a_Graph, num_lines):
   components, num_visited_ver, num_visited_edge, cycle = DFS(a_Graph)
-  print("Read {0} cities and {1} edges".format(num_visited_ver, num_visited_edge))
+  print("Read {0} cities and {1} edges".format(num_visited_ver, num_lines))
   print("Number of connected components: {0}".format(len(components)))
   for i in range(len(components)):
     print("  Connected Component {0}:".format(i+1))
@@ -281,8 +290,8 @@ def printComponents(a_Graph):
     print("Graph Does Not Contain a Cycle")
 
 if __name__ == '__main__':
- G = textToGraph()
+ G, num_lines = textToGraph()
  #printGraph(G)
- printComponents(G)
+ printComponents(G,num_lines)
  
 
