@@ -93,7 +93,7 @@ class Graph:
       return hash(id(self))
 
     def __str__(self):
-      return str(self._cityName, self._cityValue)
+      return str("{0},{1}".format(self._cityName,self._cityValue))
 
         # data field for names
 
@@ -188,8 +188,8 @@ def textToGraph():
   return G
 
 def printGraph(a_Graph):
-  for vertices in a_Graph:
-    name,val = str(vertices)
+  for vertices in a_Graph._cities:
+    name,val = str(vertices).split(',')
     print("Node: {0}, Name: {1}".format(val,name))
     for e in a_Graph._cities[vertices]:
       edge_val = e.opposite(vertices).get_val()
@@ -198,4 +198,3 @@ def printGraph(a_Graph):
 if __name__ == '__main__':
  G = textToGraph()
  printGraph(G)
-
