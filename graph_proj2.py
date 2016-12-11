@@ -128,13 +128,13 @@ class Graph:
     self._validate_vertex(v)
     found = False
     lnk_list = self._cities[u]
+    current = lnk_list.get_head_value()
     while not found:
-      current = lnk_list.get_head_value()
       if current:
         if current.opposite(u) == v:
           return current
         try:
-          current = current.next_edge()
+          current = current.next_edge(lnk_list)
         except:
           return None
       else:
@@ -150,7 +150,7 @@ class Graph:
     self._count += 1
     return v
 
-  def insert_edge(self, u, v, x=None):
+  def insert_edge(self, u, v):
     """Insert and return a new Edge from u to v with integer x as pointer to next edge in linked list.
 
     Raise a ValueError if u and v are not vertices of the graph.
