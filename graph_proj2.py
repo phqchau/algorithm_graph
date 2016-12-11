@@ -53,15 +53,22 @@ class Graph:
   #------------------------- nested Vertex class -------------------------
   class Vertex:
     """Lightweight vertex structure for a graph."""
-    __slots__ = '_cityName'
+    __slots__ = '_cityName', '_cityValue'
 
-    def __init__(self, x):
+    def __init__(self, x,y):
       """Do not call constructor directly. Use Graph's insert_vertex(x)."""
       self._cityName = x
+      self._cityValue = y
 
     def cityName(self):
       """Return element associated with this vertex."""
       return self._cityName
+
+    def get_val(self):
+      return self._cityValue
+
+    def changeVal(self, newVal):
+      self._cityValue = newVal
 
     def changeName(self, newName):
       self._cityName = newName
@@ -86,8 +93,7 @@ class Graph:
       return hash(id(self))
 
     def __str__(self):
-      return str(self._cityName)
-
+      return str(self._cityName, self._cityValue)
 
         # data field for names
 
@@ -107,6 +113,7 @@ class Graph:
     Graph is undirected.
     """
     self._cities = collections.OrderedDict()
+    self._count = 0
 
   def _validate_vertex(self, v):
     """Verify that v is a Vertex of this graph."""
@@ -138,8 +145,9 @@ class Graph:
     for i in self._cities:
       if i.cityName() == x:
         return i
-    v = self.Vertex(x)
+    v = self.Vertex(x,self._count)
     self._cities[v] = LinkedList()
+    self._count += 1
     return v
 
   def insert_edge(self, u, v, x=None):
@@ -159,16 +167,16 @@ class Graph:
       return e
 
   def searchCity(self, cityName):
-    p = 0
     for i in self._cities:
       if str(i) == cityName:
-        return p
-      p += 1
+        return i._cityValue
     self.insert_vertex(cityName)
-    return p
+    return self._count
+
+#------------------------- Functionality Functions -------------------------
+G = Graph()
 
 def textToGraph():
-  G = Graph()
   fname = input("What file do you want to use?")
   readData = nodeDict(fname)
   for i in readData:
@@ -179,5 +187,15 @@ def textToGraph():
       G.insert_edge(origin, dest)
   return G
 
+def printGraph(a_Graph):
+  for vertices in a_Graph:
+    name,val = str(vertices)
+    print("Node: {0}, Name: {1}".format(val,name))
+    for e in a_Graph._cities[vertices]:
+      edge_val = e.opposite(vertices).get_val()
+      print("\tEdge: {0}".format(edge_val))
+
 if __name__ == '__main__':
  G = textToGraph()
+ printGraph(G)
+
