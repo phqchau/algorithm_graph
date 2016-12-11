@@ -1,0 +1,10 @@
+Richmond,IN-Muncie,IN Richmond,IN-Oxford,OH Richmond,IN-Anderson,IN
+Oxford,OH-Richmond,IN
+Muncie,IN-Chicago,IL Muncie,IN-Fort_Wayne,IN Muncie,IN-Dayton,OH Muncie,IN-Richmond,IN
+Indianapolis,IN-Dayton,OH Indianapolis,IN-Anderson,IN
+Dayton,OH-Anderson,IN Dayton,OH-Indianapolis,IN Dayton,OH-Muncie,IN
+Anderson,IN-Richmond,IN Anderson,IN-Indianapolis,IN Anderson,IN-Dayton,OH
+Bloomington,IN-Cincinnati,OH Bloomington,IN-Fort_Wayne,IN
+Fort_Wayne,IN-Muncie,IN Fort_Wayne,IN-Chicago,IL Fort_Wayne,IN-Bloomington,IN Fort_Wayne,IN-Cincinnati,OH
+Chicago,IL-Muncie,IN Chicago,IL-Fort_Wayne,IN
+Cincinnati,OH-Fort_Wayne,IN Cincinnati,OH-Bloomington,IN

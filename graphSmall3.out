@@ -1,0 +1,25 @@
+Read 20 cities and 19 edges
+Number of connected components: 2
+ Connected Component 1:
+    Baltimore,MD
+    Atlantic_City,NJ
+    Annapolis,MD
+    Brooklyn,NY
+    Cleveland,OH
+    Bucks_County,PA
+    Bergan_County,NJ
+    Charlotte,NC
+    Buffalo,NY
+    Corpus_Christi,TX
+    Cincinnati,OH
+    Albuquerque,NM
+    Austin,Texas
+    Colorado_Springs,CO
+    Atlanta,GA,
+    Columbus,OH
+ Connected Component 2:
+    Bronx,NY
+    Cape_May_County,NJ
+    Boston,MA
+    Hartford,CT
+Graph contains a cycle

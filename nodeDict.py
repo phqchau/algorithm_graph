@@ -2,7 +2,8 @@ import collections
 
 def nodeDict(filename):
     nodes=open(filename, "r")
-    d = collections.OrderedDict()
+    #d = collections.OrderedDict()
+    d = {}
     for line in nodes.readlines():
         lineList = line.replace("-", " ").strip().split(" ")
 

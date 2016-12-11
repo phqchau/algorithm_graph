@@ -34,7 +34,7 @@ class Graph:
 
     def next_edge(self, theGraph):
       """Return the subsequent edge in the graph."""
-      lnk_list = theGraph._cities[self._origin]
+      lnk_list = theGraph#[self._origin]
       current = lnk_list.search(self) # returns a node in linked list
       next_loc =  current.get_next() # returns the next node
       required_edge = next_loc.get_data() # returns the next edge
@@ -77,7 +77,7 @@ class Graph:
       """ returns the first edge from the adjacency-list of the vertex
 
       theGraph            the graph the node is in"""
-      edges = theGraph._cities[self]
+      edges = theGraph[self]
       first = edges.get_head_value()
       return first
 
@@ -93,7 +93,7 @@ class Graph:
       return hash(id(self))
 
     def __str__(self):
-      return str("{0},{1}".format(self._cityName,self._cityValue))
+      return str("{0},{1}".format(self._cityName, self._cityValue))
 
         # data field for names
 
@@ -158,15 +158,19 @@ class Graph:
     """
     if self.get_edge(u, v) is None:      # includes error checking
       #raise ValueError('u and v are already adjacent')
-      e = self.Edge(u, v)#, x)
+      #e = self.Edge(u, v)#, x)
+      #lnk_list = self._cities[u]
+      e = self.Edge(u, v)
       u.addEdge(self._cities, e)
       v.addEdge(self._cities, e)
 
       return e
+    else:
+      return self.get_edge(u, v)
 
   def searchCity(self, cityName):
     for i in self._cities:
-      if str(i).split(',')[0] == cityName:
+      if i.cityName() == cityName:
         return i._cityValue
     self.insert_vertex(cityName)
     return self._count
@@ -177,27 +181,33 @@ G = Graph()
 def textToGraph():
   fname = input("What file do you want to use?")
   readData = nodeDict(fname)
-  for i in readData:
+  print(readData)
+  for i in readData.keys():
     origin = G.insert_vertex(i)
-  for i in readData:
+  for i in readData.keys():
     for j in readData[i]:
+      origin = G.insert_vertex(i)
       dest = G.insert_vertex(j)
-      G.insert_edge(origin, dest)
+      e = G.insert_edge(origin, dest)
+      if e == None:
+        e = G.insert_edge(dest, origin)
+      #print(origin.cityName(),e.opposite(origin).cityName())
   return G
 
 def printGraph(a_Graph):
   for vertices in a_Graph._cities:
     name,val = str(vertices).split(',')
     print("Node: {0}, Name: {1}".format(val,name))
-    #currentCityLinkedList = a_Graph._cities[vertices]
-    #currentCityLinkedListHead = currentCityLinkedList.get_head()
-    currentEdge = vertices.firstEdge(a_Graph) #currentCityLinkedListHead
-    while currentEdge:
-      edge_val = currentEdge.opposite(vertices).get_val()
-      print("\tEdge: {0}".format(edge_val))
-      currentEdge = currentEdge.next_edge(a_Graph)
-
+    currentCityLinkedList = a_Graph._cities[vertices]
+    currentEdge = currentCityLinkedList.get_head_value()
+    for i in range(1):
+      edge_val,edge_name = currentEdge.opposite(vertices).get_val(),currentEdge.opposite(vertices).cityName()
+      print("\tEdge: {0},{1}".format(edge_val,edge_name))
+      #currentEdge = currentEdge.next_edge(a_Graph._cities)
 
 if __name__ == '__main__':
  G = textToGraph()
+ #print(G.searchCity("one"))
+ #print(G.searchCity("ten"))
  printGraph(G)
+
