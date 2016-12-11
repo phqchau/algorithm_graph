@@ -189,14 +189,15 @@ def printGraph(a_Graph):
   for vertices in a_Graph._cities:
     name,val = str(vertices).split(',')
     print("Node: {0}, Name: {1}".format(val,name))
-    currentCityLinkedList = a_Graph._cities[vertices]
-    currentCityLinkedListHead = currentCityLinkedList.get_head()
-    currentEdge = currentCityLinkedListHead
+    #currentCityLinkedList = a_Graph._cities[vertices]
+    #currentCityLinkedListHead = currentCityLinkedList.get_head()
+    currentEdge = vertices.first(a_Graph) #currentCityLinkedListHead
     while currentEdge:
-      edge_val = currentEdge.get_data().opposite(vertices).get_val()
-      currentEdge = currentEdge.get_next()
+      edge_val = currentEdge.opposite(vertices).get_val()
       print("\tEdge: {0}".format(edge_val))
+      currentEdge = currentEdge.next_edge(a_Graph)
+
 
 if __name__ == '__main__':
  G = textToGraph()
- #printGraph(G)
+ printGraph(G)
