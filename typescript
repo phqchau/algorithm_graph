@@ -1,0 +1,248 @@
+Script started on Sun 11 Dec 2016 03:47:04 PM EST
+duckroller@FREE-LIL-E:~/Documents/CS 310/algorithm_graph$ python graph_proj2.py 
+What file do you want to use?graphOne.in
+Read 10 cities and 13 edges
+Number of connected components: 1
+  Connected Component 1:
+	four
+	five
+	six
+	one
+	two
+	three
+	nine
+	eight
+	seven
+	ten
+Graph Contains a Cycle
+duckroller@FREE-LIL-E:~/Documents/CS 310/algorithm_graph$ python graph_proj2.py 
+What file do you want to use?graphSmall3.in
+Read 20 cities and 19 edges
+Number of connected components: 2
+  Connected Component 1:
+	Cincinnati,OH
+	Corpus_Christi,TX
+	Columbus,OH
+	Atlantic_City,NJ
+	Baltimore,MD
+	Cleveland,OH
+	Bucks_County,PA
+	Albuquerque,NM
+	Austin,Texas
+	Annapolis,MD
+	Brooklyn,NY
+	Bergan_County,NJ
+	Atlanta,GA,
+	Buffalo,NY
+	Charlotte,NC
+	Colorado_Springs,CO
+  Connected Component 2:
+	Bronx,NY
+	Hartford,CT
+	Cape_May_County,NJ
+	Boston,MA
+Graph Contains a Cycle
+duckroller@FREE-LIL-E:~/Documents/CS 310/algorithm_graph$ python graph_proj2.py 
+What file do you want to use?graphLarge1.in
+Read 99 cities and 282 edges
+Number of connected components: 1
+  Connected Component 1:
+	Philadelphia,PA
+	Union_County,NJ
+	Colorado_Springs,CO
+	Green_Bay,WI
+	Staten_Island,NY
+	Harrisburg,PA
+	Dutchess_County,NY
+	Passaic_County,NJ
+	Bucks_County,PA
+	Seattle,WA
+	Mercer_County,NJ
+	Westchester_County,NY
+	Bronx,NY
+	San_Diego,CA
+	Hunterdon_County,NJ
+	Queens,NY
+	Rochester,NY
+	Washington,DC
+	Hudson_County,NJ
+	New_Castle_County,DE
+	Portland,OR
+	Oklahoma_City,OK
+	Cincinnati,OH
+	Albuquerque,NM
+	Columbus,OH
+	Cleveland,OH
+	Las_Vegas,NV
+	Salem_County,NJ
+	Santa_Barbara,CA
+	Jersey_City,NJ
+	Sussex_County,DE
+	Phoenix,AZ
+	Buffalo,NY
+	Greenwich_Village,NY
+	Nashville,TN
+	Wilmington,DE
+	Oakland,CA
+	Gwinnett_County,GA
+	Orange_County,NY
+	Baltimore,MD
+	Atlantic_City,NJ
+	Bergan_County,NJ
+	Cape_May_County,NJ
+	Austin,Texas
+	Tacoma,WA
+	Memphis,TN
+	San_Francisco,CA
+	Boston,MA
+	Dallas,TX
+	Los_Angeles,CA
+	St._Louis,MO
+	St._Petersburg,FL
+	Palm_Beach,FL
+	Fort_Worth,TX
+	Minneapolis,MN
+	Lexington,KY
+	Monmouth_County,NJ
+	Louisville,KY
+	Outer_Banks,NC
+	Eugene,OR
+	Putnam_County,NY
+	Nassau_County,NY
+	Tucson,AZ
+	Patterson,NJ
+	Richmond,IN
+	Annapolis,MD
+	Houston,TX
+	Charlotte,NC
+	Ulster_County,NY
+	Cumberland_County,NJ
+	Chicago,IL
+	Williamsburg,VA
+	Newark,NJ
+	Long_Island,NY
+	New_York_City,NY
+	Middlesex_County,NJ
+	Brooklyn,NY
+	Essex_County,NJ
+	Atlanta,GA,
+	New_Orleans,LA
+	Indianapolis,IN
+	Kansas_City,KS
+	Detroit,MI
+	Gloucester_County,NJ
+	Miami,FL
+	Tampa,FL
+	Denver,CO
+	Ocean_County,NJ
+	Pittsburgh,PA
+	Medford,OR
+	Morris_County,NJ
+	Raleigh,NC
+	Milwaukee,WI
+	Corpus_Christi,TX
+	Omaha,NE
+	San_Antonio,TX
+	Fort_Lauderdale,FL
+	Sussex_County,NJ
+	Orlando,FL
+Graph Contains a Cycle
+duckroller@FREE-LIL-E:~/Documents/CS 310/algorithm_graph$ python graph_proj2.py 
+What file do you want to use?graphMed2.in
+Read 87 cities and 110 edges
+Number of connected components: 3
+  Connected Component 1:
+	Brooklyn,NY
+	Tucson,AZ
+	Gwinnett_County,GA
+  Connected Component 2:
+	Corpus_Christi,TX
+	Jersey_City,NJ
+	Bucks_County,PA
+	Sussex_County,DE
+	New_Orleans,LA
+	Atlantic_City,NJ
+	Indianapolis,IN
+	Bergan_County,NJ
+	Richmond,IN
+	Omaha,NE
+	Outer_Banks,NC
+	Chicago,IL
+	Sussex_County,NJ
+	Green_Bay,WI
+	New_Castle_County,DE
+	Dutchess_County,NY
+	Mercer_County,NJ
+	Union_County,NJ
+	San_Antonio,TX
+	Philadelphia,PA
+	St._Petersburg,FL
+	Salem_County,NJ
+	Monmouth_County,NJ
+	Palm_Beach,FL
+	Fort_Worth,TX
+	Annapolis,MD
+	Westchester_County,NY
+	Middlesex_County,NJ
+	Boston,MA
+	Louisville,KY
+	Fort_Lauderdale,FL
+	Morris_County,NJ
+	Nashville,TN
+	San_Francisco,CA
+	Bronx,NY
+	Houston,TX
+	Williamsburg,VA
+	Gloucester_County,NJ
+	Phoenix,AZ
+	Cleveland,OH
+	Wilmington,DE
+	Pittsburgh,PA
+	Putnam_County,NY
+	New_York_City,NY
+	St._Louis,MO
+	Nassau_County,NY
+	Passaic_County,NJ
+	Cape_May_County,NJ
+	Queens,NY
+	Oklahoma_City,OK
+	Buffalo,NY
+	Santa_Barbara,CA
+	Colorado_Springs,CO
+	Washington,DC
+	Lexington,KY
+	Tacoma,WA
+	Ocean_County,NJ
+	Harrisburg,PA
+	Minneapolis,MN
+	Patterson,NJ
+	Columbus,OH
+	Oakland,CA
+	Newark,NJ
+	Las_Vegas,NV
+	Los_Angeles,CA
+	Kansas_City,KS
+	Miami,FL
+	Eugene,OR
+	Greenwich_Village,NY
+	Dallas,TX
+	Medford,OR
+	Detroit,MI
+	Cincinnati,OH
+	Raleigh,NC
+	Seattle,WA
+	Albuquerque,NM
+	Baltimore,MD
+	Essex_County,NJ
+	Orange_County,NY
+	Long_Island,NY
+	Tampa,FL
+	Hunterdon_County,NJ
+  Connected Component 3:
+	Cumberland_County,NJ
+	Charlotte,NC
+Graph Contains a Cycle
+duckroller@FREE-LIL-E:~/Documents/CS 310/algorithm_graph$ exit
+exit
+
+Script done on Sun 11 Dec 2016 03:48:56 PM EST
