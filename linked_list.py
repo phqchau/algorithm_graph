@@ -28,6 +28,9 @@ class LinkedList(object):
     self.head = new_node
     #return
 
+  def get_head(self):
+    return self.head
+
   def get_head_value(self):
     return self.head.get_data() if self.head else None
 

@@ -159,8 +159,6 @@ class Graph:
     if self.get_edge(u, v) is None:      # includes error checking
       #raise ValueError('u and v are already adjacent')
       e = self.Edge(u, v)#, x)
-      lnk_list = self._cities[u]
-      e = self.Edge(u, v)
       u.addEdge(self._cities, e)
       v.addEdge(self._cities, e)
 
@@ -191,8 +189,12 @@ def printGraph(a_Graph):
   for vertices in a_Graph._cities:
     name,val = str(vertices).split(',')
     print("Node: {0}, Name: {1}".format(val,name))
-    for e in a_Graph._cities[vertices]:
-      edge_val = e.opposite(vertices).get_val()
+    currentCityLinkedList = a_Graph._cities[vertices]
+    currentCityLinkedListHead = currentCityLinkedList.get_head()
+    currentEdge = currentCityLinkedListHead
+    while currentEdge:
+      edge_val = currentEdge.get_data().opposite(vertices).get_val()
+      currentEdge = currentEdge.get_next()
       print("\tEdge: {0}".format(edge_val))
 
 if __name__ == '__main__':
