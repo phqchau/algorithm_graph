@@ -207,7 +207,82 @@ def printGraph(a_Graph):
       #print(a_Graph._cities[vertices].size())
       currentEdge = currentEdge.next_edge(a_Graph._cities[vertices])
 
+def DFS_visit(a_Graph, start_v):
+  visited_ver = []
+  visited_edge = []
+  stack = [start_v]
+  cycle = False
+  pre,vertex = None,None
+  while stack:
+    pre = vertex
+    vertex = stack.pop()
+
+    if pre:
+      v_edge = a_Graph.get_edge(pre, vertex)
+      u_edge = a_Graph.get_edge(vertex, pre)
+
+      print(v_edge is u_edge)
+    
+      if v_edge or u_edge:
+        if v_edge not in visited_edge or u_edge not in visited_edge:
+          visited_edge.append(v_edge)
+          print(v_edge)
+        else:
+          cycle = True
+
+    if vertex not in visited_ver:
+      #print(vertex.cityName())
+      visited_ver.append(vertex)
+      #v = a_Graph.insert_vertex(vertex)
+      currentCityLinkedList = a_Graph._cities[vertex]
+      currentEdge = currentCityLinkedList.get_head_value()
+      while currentEdge:
+        edge_name = currentEdge.opposite(vertex)
+        stack.append(edge_name)
+        #print(edge_name)
+        currentEdge = currentEdge.next_edge(a_Graph._cities[vertex])
+  return visited_ver, visited_edge, cycle
+
+def DFS(a_Graph):
+  # if a_Graph._count > visited_ver: a_Graph._cities.keys() - visited_ver
+  num_visited_ver, num_visited_edge, components, cycle = 0,0,[],False
+  remaining_nodes = list(a_Graph._cities.keys())
+  #run_n = 0
+  while num_visited_ver < a_Graph._count:
+    if remaining_nodes:
+      current_node = remaining_nodes[0]
+      #print(run_n)
+      new_ver, new_edges, new_cycle = DFS_visit(a_Graph,current_node)
+      if new_cycle == True:
+        cycle = new_cycle
+      num_visited_ver += len(new_ver)
+      num_visited_edge += len(new_edges)
+      print(len(new_edges))
+      named_ver = [i.cityName() for i in new_ver]
+      #print(named_ver)
+      components.append(named_ver)
+      remaining_nodes = list(set(remaining_nodes) - set(new_ver))
+    else:
+      break
+    #run_n+=1
+  return components, num_visited_ver, num_visited_edge, cycle
+
+def printComponents(a_Graph):
+  components, num_visited_ver, num_visited_edge, cycle = DFS(a_Graph)
+  print("Read {0} cities and {1} edges".format(num_visited_ver, num_visited_edge))
+  print("Number of connected components: {0}".format(len(components)))
+  for i in range(len(components)):
+    print("  Connected Component {0}:".format(i+1))
+    for j in components[i]:
+      print("\t{0}".format(j))
+  if cycle:
+    print("Graph Contains a Cycle")
+  else:
+    print("Graph Does Not Contain a Cycle")
+
 if __name__ == '__main__':
  G = textToGraph()
- printGraph(G)
+ #printGraph(G)
+ printComponents(G)
+ 
 
